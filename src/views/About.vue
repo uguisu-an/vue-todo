@@ -1,13 +1,13 @@
 <template>
   <div>
     <pre>{{ tasks }}</pre>
-    <v-task-list-input v-model="tasks" />
+    <v-task-list-input :tasks="tasks" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import VueTaskListInput from "../components/VueTaskListInput.vue";
+import VueTaskListInput from "../components/VueTaskListInputTwo.vue";
 
 @Component({
   components: {
