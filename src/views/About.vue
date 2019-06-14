@@ -1,31 +1,20 @@
 <template>
   <div>
-    <pre>{{ tasks }}</pre>
-    <v-task-list-input :tasks="tasks" />
+    <pre>{{ messages }}</pre>
+    <v-list-input :messages="messages" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import VueTaskListInput from "../components/VueTaskListInputTwo.vue";
+import VueListInput from "../components/VueListInput.vue";
 
 @Component({
   components: {
-    "v-task-list-input": VueTaskListInput
+    "v-list-input": VueListInput
   }
 })
 export default class Home extends Vue {
-  tasks = [
-    {
-      id: 1,
-      title: "to do 1",
-      description: "hello world"
-    },
-    {
-      id: 2,
-      title: "task 2",
-      description: "hi hi hi hi !"
-    }
-  ];
+  messages: string[] = ["hello", "world"];
 }
 </script>
