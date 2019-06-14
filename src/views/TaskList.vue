@@ -29,6 +29,7 @@ import { Component, Vue } from "vue-property-decorator";
 import _ from "lodash";
 import TaskEdit from "../components/TaskEdit.vue";
 import { Task, newTask } from "@/models/task";
+import taskApi from "@/api/task-api";
 
 @Component({
   components: {
@@ -38,18 +39,13 @@ import { Task, newTask } from "@/models/task";
 export default class TaskList extends Vue {
   selectedIndex = -1;
 
-  tasks: Task[] = [
-    {
-      id: 1,
-      title: "buy milk",
-      description: ""
-    },
-    {
-      id: 2,
-      title: "call john",
-      description: ""
-    }
-  ];
+  get tasks(): Task[] {
+    return this.$store.state.tasks;
+  }
+
+  created() {
+    this.$store.dispatch("getTasks");
+  }
 
   clone(task: Task) {
     return _.clone(task);
