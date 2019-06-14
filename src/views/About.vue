@@ -2,16 +2,25 @@
   <div>
     <pre>{{ address }}</pre>
     <v-address-input v-model="address" />
+
+    <pre>{{ tasks }}</pre>
+    <!-- <v-task-list-input v-model="tasks" /> -->
+    <div v-for="(task, i) in tasks" :key="i">
+      <input type="text" v-model="task.title" />
+      <textarea v-model="task.description" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import VueAddressInput from "../components/VueAddressInput.vue";
+import VueTaskListInput from "../components/VueTaskListInput.vue";
 
 @Component({
   components: {
-    "v-address-input": VueAddressInput
+    "v-address-input": VueAddressInput,
+    "v-task-list-input": VueTaskListInput
   }
 })
 export default class Home extends Vue {
@@ -21,5 +30,18 @@ export default class Home extends Vue {
     latitude: 0.0,
     longitude: 0.0
   };
+
+  tasks = [
+    {
+      id: 1,
+      title: "to do 1",
+      description: "hello world"
+    },
+    {
+      id: 2,
+      title: "task 2",
+      description: "hi hi hi hi !"
+    }
+  ];
 }
 </script>
