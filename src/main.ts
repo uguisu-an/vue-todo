@@ -8,6 +8,12 @@ Vue.config.productionTip = false;
 import VuePostcodeInput from "@/components/VuePostcodeInput.vue";
 Vue.component("v-postcode-input", VuePostcodeInput);
 
+Vue.directive("focus", {
+  inserted(el) {
+    el.focus();
+  }
+});
+
 new Vue({
   router,
   store,

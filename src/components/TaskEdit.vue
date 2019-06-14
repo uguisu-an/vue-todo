@@ -2,7 +2,13 @@
   <form @submit.prevent="submit">
     <div>
       <div class="mb-1">
-        <input class="form-control" type="text" v-model="task.title" required />
+        <input
+          class="form-control"
+          type="text"
+          v-model="task.title"
+          v-focus
+          required
+        />
       </div>
       <div>
         <button class="btn btn-sm btn-primary">保存</button>
