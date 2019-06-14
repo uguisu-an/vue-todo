@@ -1,4 +1,5 @@
 import Axios, { AxiosInstance } from "axios";
+import { Task } from "@/models/task";
 
 export class TaskApi {
   private readonly client: AxiosInstance;
@@ -9,8 +10,15 @@ export class TaskApi {
 
   public async getTasks() {
     const res = await this.client.get("tasks");
-    console.info(res);
     return res.data;
+  }
+
+  public async save(task: Task) {
+    if (task.id) {
+      await this.client.put(`tasks/${task.id}`, task);
+    } else {
+      await this.client.post("tasks", task);
+    }
   }
 }
 

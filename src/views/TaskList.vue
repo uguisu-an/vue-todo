@@ -58,16 +58,8 @@ export default class TaskList extends Vue {
     this.selectedIndex = index;
   }
 
-  incrementedId() {
-    return Math.max(...this.tasks.map(t => t.id || 0)) + 1;
-  }
-
   saveTask(task: Task) {
-    this.tasks.splice(
-      this.selectedIndex,
-      1,
-      Object.assign({}, task, { id: task.id || this.incrementedId() })
-    );
+    this.$store.dispatch("saveTask", task);
     this.selectedIndex = -1;
   }
 

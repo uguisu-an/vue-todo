@@ -14,6 +14,10 @@ export default new Vuex.Store({
   actions: {
     async getTasks({ state }) {
       state.tasks = await taskApi.getTasks();
+    },
+    async saveTask({ dispatch }, task: Task) {
+      await taskApi.save(task);
+      dispatch("getTasks");
     }
   }
 });
