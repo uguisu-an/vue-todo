@@ -2,7 +2,6 @@
   <div class="container">
     <ul class="list-group mb-2">
       <li v-for="(task, i) in tasks" :key="i" class="list-group-item p-1">
-        {{ task.id }}
         <div v-if="selectedIndex === i">
           <TaskEdit
             :task="clone(task)"
