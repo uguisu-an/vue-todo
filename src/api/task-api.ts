@@ -14,11 +14,10 @@ export class TaskApi {
   }
 
   public async save(task: Task) {
-    if (task.id) {
-      await this.client.put(`tasks/${task.id}`, task);
-    } else {
-      await this.client.post("tasks", task);
-    }
+    const res = task.id
+      ? await this.client.put(`tasks/${task.id}`, task)
+      : await this.client.post("tasks", task);
+    return res.data as Task;
   }
 }
 

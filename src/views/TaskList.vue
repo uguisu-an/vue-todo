@@ -44,7 +44,7 @@ export default class TaskList extends Vue {
   }
 
   created() {
-    this.$store.dispatch("getTasks");
+    this.$store.dispatch("initTasks");
   }
 
   clone(task: Task) {
@@ -64,6 +64,7 @@ export default class TaskList extends Vue {
   }
 
   discardChanges(task: Task) {
+    // ページ移動時はまだメモリ上にあって勝手に消えるので不要
     if (!task.id) {
       this.tasks.splice(this.selectedIndex, 1);
     }

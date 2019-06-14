@@ -10,14 +10,23 @@ export default new Vuex.Store({
   state: {
     tasks: [] as Task[]
   },
-  mutations: {},
+  mutations: {
+    setTask(state, { task, newTask }) {
+      const i = state.tasks.findIndex(t => t.id === task.id);
+      if (i < 0) {
+        state.tasks.push(newTask);
+      } else {
+        state.tasks.splice(i, 1, newTask);
+      }
+    }
+  },
   actions: {
-    async getTasks({ state }) {
+    async initTasks({ state }) {
       state.tasks = await taskApi.getTasks();
     },
-    async saveTask({ dispatch }, task: Task) {
-      await taskApi.save(task);
-      dispatch("getTasks");
+    async saveTask({ commit }, task: Task) {
+      const newTask = await taskApi.save(task);
+      commit("setTask", { task, newTask });
     }
   }
 });
