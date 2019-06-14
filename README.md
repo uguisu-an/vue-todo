@@ -1,33 +1,14 @@
 # vue-chat
 
-## Project setup
+## セットアップ
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### モックサーバーとクライアントを起動する
 ```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your unit tests
-```
-yarn run test:unit
+yarn start
+yarn serve
 ```
 
 ### Customize configuration
