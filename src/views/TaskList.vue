@@ -6,7 +6,7 @@
           <TaskEdit
             :task="clone(task)"
             @submit="saveTask"
-            @cancel="discardTask"
+            @cancel="discardChanges"
           />
         </div>
         <div v-else>
@@ -20,7 +20,7 @@
         </div>
       </li>
     </ul>
-    <!-- <button class="btn btn-primary">Add Task</button> -->
+    <button class="btn btn-link" @click="addTask">Add Task</button>
   </div>
 </template>
 
@@ -28,22 +28,26 @@
 import { Component, Vue } from "vue-property-decorator";
 import _ from "lodash";
 import TaskEdit from "../components/TaskEdit.vue";
-import { Task } from "@/models/task";
+import { Task, newTask } from "@/models/task";
 
 @Component({
   components: {
     TaskEdit
   }
 })
-export default class About extends Vue {
+export default class TaskList extends Vue {
   selectedIndex = -1;
 
-  tasks = [
+  tasks: Task[] = [
     {
-      title: "buy milk"
+      id: 1,
+      title: "buy milk",
+      description: ""
     },
     {
-      title: "call john"
+      id: 2,
+      title: "call john",
+      description: ""
     }
   ];
 
@@ -52,16 +56,35 @@ export default class About extends Vue {
   }
 
   select(index: number) {
+    if (this.selectedIndex >= 0) {
+      this.discardChanges(this.tasks[this.selectedIndex]);
+    }
     this.selectedIndex = index;
   }
 
+  incrementedId() {
+    return Math.max(...this.tasks.map(t => t.id || 0)) + 1;
+  }
+
   saveTask(task: Task) {
-    this.tasks.splice(this.selectedIndex, 1, task);
+    this.tasks.splice(
+      this.selectedIndex,
+      1,
+      Object.assign({}, task, { id: this.incrementedId })
+    );
     this.selectedIndex = -1;
   }
 
-  discardTask(task: Task) {
+  discardChanges(task: Task) {
+    if (!task.id) {
+      this.tasks.splice(this.selectedIndex, 1);
+    }
     this.selectedIndex = -1;
+  }
+
+  addTask() {
+    this.tasks.push(newTask());
+    this.selectedIndex = this.tasks.length - 1;
   }
 }
 </script>

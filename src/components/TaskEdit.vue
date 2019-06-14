@@ -1,9 +1,17 @@
 <template>
-  <div class="d-flex justify-content-stretch">
-    <input class="form-control" type="text" v-model="task.title" />
-    <button class="btn btn-sm btn-secondary" @click="cancel">キャンセル</button>
-    <button class="btn btn-sm btn-primary" @click="submit">保存</button>
-  </div>
+  <form @submit.prevent="submit">
+    <div>
+      <div class="mb-1">
+        <input class="form-control" type="text" v-model="task.title" required />
+      </div>
+      <div>
+        <button class="btn btn-sm btn-primary">保存</button>
+        <button class="btn btn-sm btn-link" @click.prevent="cancel">
+          キャンセル
+        </button>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script lang="ts">
@@ -19,7 +27,7 @@ export default class TaskEdit extends Vue {
   }
 
   cancel() {
-    this.$emit("cancel");
+    this.$emit("cancel", this.task);
   }
 }
 </script>
