@@ -4,11 +4,7 @@
     <v-address-input v-model="address" />
 
     <pre>{{ tasks }}</pre>
-    <!-- <v-task-list-input v-model="tasks" /> -->
-    <div v-for="(task, i) in tasks" :key="i">
-      <input type="text" v-model="task.title" />
-      <textarea v-model="task.description" />
-    </div>
+    <v-task-list-input v-model="tasks" />
   </div>
 </template>
 
@@ -43,5 +39,10 @@ export default class Home extends Vue {
       description: "hi hi hi hi !"
     }
   ];
+
+  // input() {
+  //   console.info("test");
+  //   // this.$set(this.tasks, i, task);
+  // }
 }
 </script>

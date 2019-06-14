@@ -1,37 +1,32 @@
 <template>
   <div>
     <div v-for="(task, i) in tasks" :key="i">
-      <v-task-input :value="task" @input="input(i)" />
+      <v-task-input :value="task" @input="t => input(i, t)" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Prop, Component, Vue } from "vue-property-decorator";
-import VueTaskInput from "./VueTaskInput.vue";
-
-interface Task {
-  id?: string;
-  title: string;
-  description: string;
-}
+import VueTaskInput, { Task } from "./VueTaskInput.vue";
 
 @Component({
+  model: {
+    prop: "tasks"
+  },
   components: {
     "v-task-input": VueTaskInput
   }
 })
 export default class VueTaskListInput extends Vue {
-  @Prop({ default: () => [] }) value!: Task[];
+  @Prop({ default: () => [] }) tasks!: Task[];
 
-  get tasks(): Task[] {
-    return this.value;
-  }
-
-  input(i: number) {
-    return (task: Task) => {
-      this.$emit("input", this.value.splice(i, 1, task));
-    };
+  input(i: number, task: Task): void {
+    this.$emit("input", [
+      ...this.tasks.slice(0, i),
+      task,
+      ...this.tasks.slice(i + 1)
+    ]);
   }
 }
 </script>

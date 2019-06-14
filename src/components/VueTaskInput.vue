@@ -8,7 +8,8 @@
 <script lang="ts">
 import { Prop, Component, Vue } from "vue-property-decorator";
 
-interface Task {
+export interface Task {
+  id?: string;
   title: string;
   description: string;
 }
