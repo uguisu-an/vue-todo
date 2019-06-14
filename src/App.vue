@@ -9,14 +9,14 @@
 </template>
 
 <style lang="scss">
-$primary: #ff304f;
-$secondary: #cacaca;
-$success: #015668;
-$danger: #06648c;
-$info: #0f81c7;
-$warning: #0de2ea;
-$light: #ececec;
-$dark: #222222;
+$primary: #528078;
+$secondary: #eed75a;
+$success: #fec100;
+$danger: #703b3b;
+$info: #63e792;
+$warning: #ffe869;
+$light: #fdfbf7;
+$dark: #555555;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
