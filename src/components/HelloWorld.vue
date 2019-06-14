@@ -96,10 +96,16 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import request from "@/utils/request";
 
-@Component
+@Component({})
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+
+  async mounted() {
+    const messages = await request.get("/messages");
+    console.info(messages);
+  }
 }
 </script>
 

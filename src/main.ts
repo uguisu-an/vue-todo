@@ -5,6 +5,9 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
+import VuePostcodeInput from "@/components/VuePostcodeInput.vue";
+Vue.component("v-postcode-input", VuePostcodeInput);
+
 new Vue({
   router,
   store,
