@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { Task } from "@/models/task";
+import Task from "@/models/task";
 
 import taskApi from "@/api/task-api";
 

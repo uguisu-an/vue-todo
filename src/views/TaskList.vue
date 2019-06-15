@@ -9,7 +9,7 @@
             @cancel="discardChanges"
           />
         </div>
-        <div v-else>
+        <div class="d-flex align-items-center" v-else>
           <a
             href="#"
             class="btn btn-link w-100 text-left"
@@ -17,6 +17,9 @@
           >
             {{ task.title }}
           </a>
+          <small style="white-space: nowrap" v-if="task.date">
+            {{ formatDate(task.date) }}
+          </small>
         </div>
       </li>
     </ul>
@@ -28,8 +31,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import _ from "lodash";
 import TaskEdit from "../components/TaskEdit.vue";
-import { Task, newTask } from "@/models/task";
+import Task from "@/models/task";
 import taskApi from "@/api/task-api";
+import formatDistance from "date-fns/formatRelative";
 
 @Component({
   components: {
@@ -41,6 +45,10 @@ export default class TaskList extends Vue {
 
   get tasks(): Task[] {
     return this.$store.state.tasks;
+  }
+
+  formatDate(date: Date) {
+    return formatDistance(date, new Date());
   }
 
   created() {
@@ -72,7 +80,7 @@ export default class TaskList extends Vue {
   }
 
   addTask() {
-    this.tasks.push(newTask());
+    this.tasks.push(new Task());
     this.selectedIndex = this.tasks.length - 1;
   }
 }

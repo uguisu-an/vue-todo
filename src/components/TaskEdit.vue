@@ -10,6 +10,7 @@
           required
         />
       </div>
+      <v-date-input v-model="task.date" />
       <div>
         <button class="btn btn-sm btn-primary">保存</button>
         <button class="btn btn-sm btn-link" @click.prevent="cancel">
@@ -22,11 +23,11 @@
 
 <script lang="ts">
 import { Prop, Component, Vue } from "vue-property-decorator";
-import { Task, newTask } from "@/models/task";
+import Task from "@/models/task";
 
 @Component
 export default class TaskEdit extends Vue {
-  @Prop({ default: newTask }) task!: Task;
+  @Prop({ default: () => new Task() }) task!: Task;
 
   submit() {
     this.$emit("submit", this.task);

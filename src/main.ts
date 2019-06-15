@@ -7,6 +7,8 @@ Vue.config.productionTip = false;
 
 import VuePostcodeInput from "@/components/VuePostcodeInput.vue";
 Vue.component("v-postcode-input", VuePostcodeInput);
+import VDateInput from "@/components/VDateInput.vue";
+Vue.component("v-date-input", VDateInput);
 
 Vue.directive("focus", {
   inserted(el) {
